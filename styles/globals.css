@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800,300i,400i,500i,600i,700i,800i&display=swap");
+body {
+  color: #000;
+  font-family: Montserrat, "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+#hexGrid {
+  overflow: hidden;
+  display: grid;
+  grid-gap: 6px;
+  width: 250px;
+  margin: 0 auto;
+  font-size: 0.9em;
+  min-height: 281px;
+  grid-template-columns: repeat(6, 2fr);
+  padding-bottom: 60px;
+}
+
+li {
+  line-height: 30px;
+  border-bottom: 1px solid #e7dfbc;
+}
+
+.hex {
+  grid-column-end: span 2;
+  position: relative;
+  visibility: hidden;
+  background-color: solid yellow;
+  outline: 1px solid transparent;
+}
+
+.hex:nth-child(5n + 1) {
+  grid-column-start: 2;
+}
+
+.hex:after {
+  content: "";
+  display: block;
+  padding-bottom: 86.602%;
+}
+
+.hex:nth-child(5n + 3) {
+  grid-column-start: 1;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+.hexIn {
+  position: absolute;
+  width: 100%;
+  padding-bottom: 115.47%;
+  overflow: hidden;
+  visibility: hidden;
+  outline: 1px solid transparent;
+  -webkit-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  -ms-transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+  transform: rotate3d(0, 0, 1, -60deg) skewY(30deg);
+}
+
+.hexIn * {
+  position: absolute;
+  visibility: visible;
+  outline: 1px solid transparent;
+}
+
+.hexLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: #e4eaf3;
+  overflow: hidden;
+  -webkit-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+  -ms-transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+  transform: skewY(-30deg) rotate3d(0, 0, 1, 60deg);
+}
+
+#center-letter {
+  background-color: #ffd924;
+}
+
+.hex p {
+  text-transform: uppercase;
+  color: #000;
+  font-family: Montserrat, "Open Sans", sans-serif;
+  font-weight: 700;
+  width: 100%;
+  padding: 40%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-size: 1.6em;
+  width: 100%;
+  padding: 40%;
+  box-sizing: border-box;
+  background-color: transparent;
+  font-weight: 700;
+  font-size: 1.8em;
+  color: black;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Open Sans", sans-serif;
+}
