@@ -1,55 +1,21 @@
+import { useEffect, useState } from "react";
+import Hexagon from "./Hexagon";
+
 const Beehive = () => {
+  const [letters, setLetters] = useState([]);
+  useEffect(() => {
+    const getLetters = async () => {
+      const response = await fetch("/api/game");
+      const data = await response.json();
+      setLetters(data.selectedLetters);
+      console.log(data.selectedLetters);
+    };
+    getLetters();
+  }, []);
+
   return (
     <ul id="hexGrid">
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink">
-            <p>e</p>
-          </a>
-        </div>
-      </li>
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink">
-            <p>r</p>
-          </a>
-        </div>
-      </li>
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink">
-            <p>o</p>
-          </a>
-        </div>
-      </li>
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink" id="center-letter">
-            <p>y</p>
-          </a>
-        </div>
-      </li>
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink">
-            <p>s</p>
-          </a>
-        </div>
-      </li>
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink">
-            <p>d</p>
-          </a>
-        </div>
-      </li>
-      <li className="hex">
-        <div className="hexIn">
-          <a className="hexLink">
-            <p>t</p>
-          </a>
-        </div>
-      </li>
+      {letters && letters.map((letter) => <Hexagon letter={letter} />)}
     </ul>
   );
 };
