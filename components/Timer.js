@@ -7,6 +7,9 @@ const Timer = ({ time }) => {
   const [remaining, setRemaining] = useState(time);
 
   useEffect(() => {
+    setRemaining(time);
+  }, [time]);
+  useEffect(() => {
     if (!isRunning) return;
     const tick = () => {
       setRemaining((prev) => {
@@ -20,7 +23,7 @@ const Timer = ({ time }) => {
     };
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
-  }, [isRunning, time]);
+  }, [isRunning]);
 
   return <div>{remaining}</div>;
 };

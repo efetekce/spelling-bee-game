@@ -7,8 +7,10 @@ const GameBoard = () => {
   const [time, setTime] = useState(100);
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("event:", e);
+    console.log("submitted");
+    console.log(time);
     setTime((prev) => prev + 25);
+    console.log("updated time:", time);
   };
   return (
     <div>
