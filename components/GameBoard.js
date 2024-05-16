@@ -4,7 +4,7 @@ import Beehive from "./Beehive";
 import Input from "./Input";
 
 const GameBoard = () => {
-  const [time, setTime] = useState(60);
+  const [time, setTime] = useState(10);
 
   const submitHandler = async (value) => {
     // console.log(value.textInput);

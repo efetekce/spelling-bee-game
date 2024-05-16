@@ -7,7 +7,7 @@ const dictionary = JSON.parse(dictionaryData);
 
 console.log(typeof dictionary);
 
-const pickSevenLetters = () => {
+const pickSevenEnglishLetters = () => {
   const consonants = [
     "b",
     "c",
@@ -47,33 +47,62 @@ const pickSevenLetters = () => {
     return acc;
   }, []);
 
-  //   for (let i = 0; i < 2; i++) {
-  //     const randomIndex = Math.floor(Math.random() * vowels.length);
-  //     // console.log(randomIndex);
-  //     while (!letters.includes(vowels[randomIndex])) {
-  //       letters.push(vowels[randomIndex]);
-  //       console.log(letters);
-  //     }
-  //   }
-  //   for (let i = 0; i < 5; i++) {
-  //     const randomIndex = Math.floor(Math.random() * consonants.length);
-  //     // console.log(randomIndex);
-  //     while (!letters.includes(consonants[randomIndex])) {
-  //       letters.push(consonants[randomIndex]);
-  //       console.log(letters);
-  //     }
-  //   }
+  return letters;
+};
+
+const pickSevenTurkishLetters = () => {
+  const consonants = [
+    "b",
+    "c",
+    "ç",
+    "d",
+    "f",
+    "g",
+    "ğ",
+    "h",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "p",
+    "r",
+    "s",
+    "ş",
+    "t",
+    "v",
+    "y",
+    "z",
+  ];
+  const vowels = ["a", "e", "ı", "i", "o", "ö", "u", "ü"];
+
+  const letters = Array.from({ length: 7 }).reduce((acc) => {
+    let randomLetter;
+    do {
+      const isVowel = Math.random() < 0.3;
+      const letter = isVowel ? vowels : consonants;
+      const randomIndex = Math.floor(Math.random() * letter.length);
+      randomLetter = letter[randomIndex];
+    } while (acc.includes(randomLetter));
+
+    acc.push(randomLetter);
+
+    return acc;
+  }, []);
 
   return letters;
 };
 
-const submitGuess = () => {};
-
 export default function handler(req, res) {
   if (req.method === "GET") {
-    const selectedLetters = pickSevenLetters();
-    //   console.log(selectedLetters);
-    res.status(200).json({ selectedLetters });
+    console.log(req.headers.path);
+    if (req.headers.path === "/en") {
+      const selectedLetters = pickSevenEnglishLetters();
+      res.status(200).json({ selectedLetters });
+    } else {
+      const selectedLetters = pickSevenTurkishLetters();
+      res.status(200).json({ selectedLetters });
+    }
   }
 
   if (req.method === "POST") {
