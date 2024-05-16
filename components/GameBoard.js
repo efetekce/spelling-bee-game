@@ -4,27 +4,29 @@ import Beehive from "./Beehive";
 import Input from "./Input";
 
 const GameBoard = () => {
-  const [time, setTime] = useState(100);
+  const [time, setTime] = useState(60);
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
+  const submitHandler = async (value) => {
+    // console.log(value.textInput);
     // console.log(e.target.elements[0].value);
-    const input = e.target.elements[0].value.toLowerCase();
-    const guess = await fetch("/api/game", {
+    // const input = e.target.elements[0].value.toLowerCase();
+    const guessResponse = await fetch("/api/game", {
       method: "POST",
-      body: input,
+      body: value.textInput,
     });
-    console.log(guess);
+    const data = await guessResponse.json();
+    console.log(data);
 
-    setTime((prev) => prev + 25);
+    if (guessResponse.status === 200) {
+      setTime((prev) => prev + 15);
+    }
     // console.log(time);
     // console.log("updated time:", time);
   };
   return (
     <div>
       <Timer time={time} />
-      <Input handleSubmit={submitHandler} />
+      <Input onSubmit={submitHandler} />
       <Beehive />
     </div>
   );

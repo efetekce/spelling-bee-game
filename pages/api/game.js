@@ -79,11 +79,11 @@ export default function handler(req, res) {
   if (req.method === "POST") {
     // console.log("post request made");
     console.log(req.body);
-    if (dictionary.includes(req.body)) {
-      console.log("includessss");
-      res.status(200).json("INCLUDES");
+    if (!dictionary.includes(req.body)) {
+      //   console.log("includessss");
+      res.status(201).json("post request made but word not found");
     }
-    res.status(404).json("post request made but word not found");
+    res.status(200).json("INCLUDES");
   }
 }
 

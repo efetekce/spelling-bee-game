@@ -1,14 +1,28 @@
 import { useEffect, useRef } from "react";
+import { useForm } from "react-hook-form";
 
-const Input = ({ handleSubmit }) => {
+const Input = ({ onSubmit }) => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+  } = useForm();
   const inputRef = useRef(null);
+
+  const onSubmitHandler = (data) => {
+    // e.preventDefault();
+    console.log(data);
+    onSubmit(data);
+  };
 
   useEffect(() => {
     const focusInput = () => {
       if (inputRef.current) inputRef.current.focus();
     };
 
-    inputRef.current.addEventListener("blur", focusInput);
+    if (inputRef.current) inputRef.current.addEventListener("blur", focusInput);
 
     focusInput();
     return () => {
@@ -18,9 +32,9 @@ const Input = ({ handleSubmit }) => {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmitHandler)}>
       <input
-        ref={inputRef}
+        {...register("textInput", { ref: inputRef })}
         type="text"
         className="bg-slate-200 rounded-xl px-8 py-4 uppercase text-2xl text-center outline-none"
       />
