@@ -1,6 +1,12 @@
 import fs from "fs";
 import path from "path";
 
+const dictionaryPath = path.resolve(process.cwd(), "public", "dictionary.json");
+const dictionaryData = fs.readFileSync(dictionaryPath, "utf-8");
+const dictionary = JSON.parse(dictionaryData);
+
+console.log(typeof dictionary);
+
 const pickSevenLetters = () => {
   const consonants = [
     "b",
@@ -61,18 +67,26 @@ const pickSevenLetters = () => {
   return letters;
 };
 
-export default function handler(req, res) {
-  //   const { language } = req.query;
-  const dictionaryPath = path.resolve(
-    process.cwd(),
-    "public",
-    "dictionary.json"
-  );
-  const dictionaryData = fs.readFileSync(dictionaryPath, "utf-8");
-  const dictionary = JSON.parse(dictionaryData);
-  console.log(dictionary);
+const submitGuess = () => {};
 
-  const selectedLetters = pickSevenLetters();
-  console.log(selectedLetters);
-  res.status(200).json({ selectedLetters });
+export default function handler(req, res) {
+  if (req.method === "GET") {
+    const selectedLetters = pickSevenLetters();
+    //   console.log(selectedLetters);
+    res.status(200).json({ selectedLetters });
+  }
+
+  if (req.method === "POST") {
+    // console.log("post request made");
+    console.log(req.body);
+    if (dictionary.includes(req.body)) {
+      console.log("includessss");
+      res.status(200).json("INCLUDES");
+    }
+    res.status(404).json("post request made but word not found");
+  }
 }
+
+// export default function POST(req,res){
+
+// }

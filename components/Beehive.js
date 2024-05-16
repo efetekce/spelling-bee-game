@@ -15,7 +15,8 @@ const Beehive = () => {
 
   return (
     <ul id="hexGrid">
-      {letters && letters.map((letter) => <Hexagon letter={letter} />)}
+      {letters &&
+        letters.map((letter) => <Hexagon letter={letter} key={letter} />)}
     </ul>
   );
 };

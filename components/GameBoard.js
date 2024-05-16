@@ -5,12 +5,21 @@ import Input from "./Input";
 
 const GameBoard = () => {
   const [time, setTime] = useState(100);
-  const submitHandler = (e) => {
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submitted");
-    console.log(time);
+
+    // console.log(e.target.elements[0].value);
+    const input = e.target.elements[0].value.toLowerCase();
+    const guess = await fetch("/api/game", {
+      method: "POST",
+      body: input,
+    });
+    console.log(guess);
+
     setTime((prev) => prev + 25);
-    console.log("updated time:", time);
+    // console.log(time);
+    // console.log("updated time:", time);
   };
   return (
     <div>
