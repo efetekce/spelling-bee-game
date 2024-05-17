@@ -5,7 +5,7 @@ import Input from "./Input";
 import GenericToast from "./GenericToast";
 
 const GameBoard = () => {
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(120);
 
   const submitHandler = async (value) => {
     const guessResponse = await fetch("/api/game", {
