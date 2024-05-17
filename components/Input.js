@@ -34,10 +34,11 @@ const Input = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <input
-        {...register("textInput", { ref: inputRef })}
+        {...register("textInput", { ref: inputRef, minLength: 3 })}
         type="text"
         className="bg-slate-200 rounded-xl px-8 py-4 uppercase text-2xl text-center outline-none"
       />
+      {errors.mail?.message}
     </form>
   );
 };

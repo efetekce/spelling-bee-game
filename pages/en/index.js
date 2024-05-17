@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Link
         href="/tr"
         className="absolute top-2 right-2 p-3 bg-white text-black font-semibold rounded-xl"
@@ -16,6 +16,6 @@ export default function Home() {
       </Link>
       Welcome to Spelling Bee Game.
       <GameBoard />
-    </div>
+    </>
   );
 }
