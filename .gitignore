@@ -37,5 +37,5 @@ yarn-error.log*
 next-env.d.ts
 
 
-dictionary.json
-gts.json
+# dictionary.json
+# gts.json
