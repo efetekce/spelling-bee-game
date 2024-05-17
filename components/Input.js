@@ -7,6 +7,7 @@ const Input = ({ onSubmit }) => {
     handleSubmit,
     watch,
     getValues,
+    reset,
     formState: { errors },
   } = useForm();
   const inputRef = useRef(null);
@@ -15,6 +16,7 @@ const Input = ({ onSubmit }) => {
     // e.preventDefault();
     console.log(data);
     onSubmit(data);
+    reset();
   };
 
   useEffect(() => {

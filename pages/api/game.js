@@ -5,7 +5,11 @@ const dictionaryPath = path.resolve(process.cwd(), "public", "dictionary.json");
 const dictionaryData = fs.readFileSync(dictionaryPath, "utf-8");
 const dictionary = JSON.parse(dictionaryData);
 
-console.log(typeof dictionary);
+const dictionaryPathTurkish = path.resolve(process.cwd(), "public", "gts.json");
+const dictionaryDataTurkish = fs.readFileSync(dictionaryPathTurkish, "utf-8");
+const dictionaryTurkish = JSON.parse(dictionaryDataTurkish);
+
+// console.log(typeof dictionary);
 
 const pickSevenEnglishLetters = () => {
   const consonants = [
@@ -106,13 +110,20 @@ export default function handler(req, res) {
   }
 
   if (req.method === "POST") {
-    // console.log("post request made");
-    console.log(req.body);
-    if (!dictionary.includes(req.body)) {
-      //   console.log("includessss");
-      res.status(201).json("post request made but word not found");
+    if (req.headers.path === "/en") {
+      console.log(req.body);
+      if (!dictionary.includes(req.body)) {
+        //   console.log("includessss");
+        res.status(201).json("post request made but word not found");
+      }
+      res.status(200).json("INCLUDES");
+    } else {
+      console.log(req.body);
+      if (!dictionaryTurkish.includes(req.body)) {
+        res.status(404).json("yok");
+      }
+      res.status(200).json("turkish includes");
     }
-    res.status(200).json("INCLUDES");
   }
 }
 
