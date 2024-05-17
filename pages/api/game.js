@@ -120,7 +120,7 @@ export default function handler(req, res) {
     } else {
       console.log(req.body);
       if (!dictionaryTurkish.includes(req.body)) {
-        res.status(404).json("yok");
+        res.status(404).json({ message: "yok" });
       }
       res.status(200).json("turkish includes");
     }

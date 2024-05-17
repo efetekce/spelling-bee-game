@@ -1,7 +1,9 @@
-const GenericToast = () => {
+const GenericToast = ({ tooShort }) => {
+  let message = "";
+  if (tooShort) message = "Word is too short.";
   return (
     <div>
-      <p>Too short</p>
+      <p>{message}</p>
       <p>Invalid word</p>
       <p>Already found</p>
       <p>Missing center letter</p>

@@ -6,8 +6,13 @@ import GenericToast from "./GenericToast";
 
 const GameBoard = () => {
   const [time, setTime] = useState(120);
+  const [showToast, setShowToast] = useState(false);
 
   const submitHandler = async (value) => {
+    console.log(value.textInput.length);
+    if (value.textInput.length < 4) {
+      setShowToast(true);
+    }
     const guessResponse = await fetch("/api/game", {
       method: "POST",
       body: value.textInput,
@@ -24,7 +29,7 @@ const GameBoard = () => {
   return (
     <div>
       <Timer time={time} />
-      <GenericToast />
+      {showToast && <GenericToast tooShort />}
       <Input onSubmit={submitHandler} />
       <Beehive />
     </div>

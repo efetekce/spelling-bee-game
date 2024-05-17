@@ -8,7 +8,7 @@ const TurkishPage = () => {
         href="/en"
         className="absolute top-2 right-2 p-3 bg-white text-black font-semibold rounded-xl"
       >
-        Ingilizce
+        EN 🇬🇧
       </Link>
       Heceleme oyununa hosgeldin
       <GameBoard />
