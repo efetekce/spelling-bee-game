@@ -8,9 +8,9 @@ const TurkishPage = () => {
         href="/en"
         className="absolute top-2 right-2 p-3 bg-white text-black font-semibold rounded-xl"
       >
-        EN 🇬🇧
+        <span className="text-5xl">EN↪ →🇬🇧</span>
       </Link>
-      Heceleme oyununa hosgeldin
+      <h2>Heceleme oyununa hosgeldin</h2>
       <GameBoard />
     </>
   );

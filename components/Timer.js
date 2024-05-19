@@ -25,10 +25,6 @@ const Timer = ({ time }) => {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  return (
-    <div>
-      <TimeDisplay time={remaining} />
-    </div>
-  );
+  return <TimeDisplay time={remaining} />;
 };
 export default Timer;

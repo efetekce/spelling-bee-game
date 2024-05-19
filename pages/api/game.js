@@ -83,7 +83,7 @@ const pickSevenTurkishLetters = () => {
   const letters = Array.from({ length: 7 }).reduce((acc) => {
     let randomLetter;
     do {
-      const isVowel = Math.random() < 0.3;
+      const isVowel = Math.random() < 0.4;
       const letter = isVowel ? vowels : consonants;
       const randomIndex = Math.floor(Math.random() * letter.length);
       randomLetter = letter[randomIndex];
@@ -98,9 +98,10 @@ const pickSevenTurkishLetters = () => {
 };
 
 export default function handler(req, res) {
-  if (req.method === "GET") {
-    console.log(req.headers.path);
-    if (req.headers.path === "/en") {
+  const { method, headers, body } = req;
+  if (method === "GET") {
+    console.log(headers.path);
+    if (headers.path === "/en") {
       const selectedLetters = pickSevenEnglishLetters();
       res.status(200).json({ selectedLetters });
     } else {
@@ -109,17 +110,17 @@ export default function handler(req, res) {
     }
   }
 
-  if (req.method === "POST") {
-    if (req.headers.path === "/en") {
-      console.log(req.body);
-      if (!dictionary.includes(req.body)) {
+  if (method === "POST") {
+    if (headers.path === "/en") {
+      console.log(body);
+      if (!dictionary.includes(body)) {
         //   console.log("includessss");
         res.status(201).json("post request made but word not found");
       }
       res.status(200).json("INCLUDES");
-    } else {
-      console.log(req.body);
-      if (!dictionaryTurkish.includes(req.body)) {
+    } else if (headers.path === "/tr") {
+      console.log(body);
+      if (!dictionaryTurkish.includes(body)) {
         res.status(404).json({ message: "yok" });
       }
       res.status(200).json("turkish includes");
@@ -129,4 +130,4 @@ export default function handler(req, res) {
 
 // export default function POST(req,res){
 
-// }
+// } can not use direct functions like this in pages router :-)
