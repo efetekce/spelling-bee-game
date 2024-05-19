@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import TimeDisplay from "./TimeDisplay";
 
-const Timer = ({ time }) => {
+const Timer = ({ time, isRunning, setRunning }) => {
   //   console.log(time);
-  const [isRunning, setRunning] = useState(true);
+
   const [remaining, setRemaining] = useState(time);
 
   useEffect(() => {

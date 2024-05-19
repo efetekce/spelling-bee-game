@@ -8,6 +8,7 @@ const Input = ({ onSubmit }) => {
     watch,
     getValues,
     reset,
+    correctWords,
     formState: { errors },
   } = useForm();
   const inputRef = useRef(null);

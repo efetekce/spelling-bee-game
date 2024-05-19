@@ -40,7 +40,7 @@ const pickSevenEnglishLetters = () => {
   const letters = Array.from({ length: 7 }).reduce((acc) => {
     let randomLetter;
     do {
-      const isVowel = Math.random() < 0.3;
+      const isVowel = Math.random() < 0.4;
       const letter = isVowel ? vowels : consonants;
       const randomIndex = Math.floor(Math.random() * letter.length);
       randomLetter = letter[randomIndex];
@@ -100,7 +100,7 @@ const pickSevenTurkishLetters = () => {
 export default function handler(req, res) {
   const { method, headers, body } = req;
   if (method === "GET") {
-    console.log(headers.path);
+    // console.log(headers.path);
     if (headers.path === "/en") {
       const selectedLetters = pickSevenEnglishLetters();
       res.status(200).json({ selectedLetters });
@@ -117,7 +117,7 @@ export default function handler(req, res) {
         //   console.log("includessss");
         res.status(201).json("post request made but word not found");
       }
-      res.status(200).json("INCLUDES");
+      res.status(200).json({ message: "includes", data: body });
     } else if (headers.path === "/tr") {
       console.log(body);
       if (!dictionaryTurkish.includes(body)) {

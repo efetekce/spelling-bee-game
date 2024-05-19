@@ -8,16 +8,15 @@ export default function Home() {
     <>
       <Link
         href="/tr"
-        className="absolute top-2 right-2 p-3 bg-white text-black font-semibold rounded-xl"
+        className="absolute top-2 right-2 p-3 bg-slate-200/70 shadow-xl  text-black font-semibold rounded-xl"
       >
-        TR 🇹🇷
+        <span className="text-4xl p-4">
+          TR
+          <br />
+          ↪🇹🇷
+        </span>
       </Link>
-      <h2 className="text-xl font-semibold text-center max-w-screen-sm">
-        Welcome to Spelling Bee Game. Timer starts after your first guess. Each
-        correct guess saves you 15 seconds. Your guess must be at least 4
-        letters and include the center letter. Make the maximum amount of
-        guesses using 7 letters from the beehive.
-      </h2>
+
       <GameBoard />
     </>
   );

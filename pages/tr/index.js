@@ -6,11 +6,15 @@ const TurkishPage = () => {
     <>
       <Link
         href="/en"
-        className="absolute top-2 right-2 p-3 bg-white text-black font-semibold rounded-xl"
+        className="absolute top-2 right-2 p-3 bg-slate-200/70 text-black font-semibold rounded-xl shadow-xl"
       >
-        <span className="text-5xl">EN↪ →🇬🇧</span>
+        <span className="text-4xl p-4">
+          EN
+          <br />
+          ↪🇬🇧
+        </span>
       </Link>
-      <h2>Heceleme oyununa hosgeldin</h2>
+
       <GameBoard />
     </>
   );
