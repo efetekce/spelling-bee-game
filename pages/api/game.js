@@ -118,13 +118,13 @@ export default function handler(req, res) {
           .status(404)
           .json({ message: "post request made but word was not found" });
       }
-      res.status(200).json({ message: "includes", data: body });
+      res.status(200).json({ message: "exists", data: body });
     } else if (headers.path === "/tr") {
       console.log(body);
       if (!dictionaryTurkish.includes(body)) {
-        res.status(404).json({ message: "yok" });
+        res.status(404).json({ message: "sözlükte böyle bir kelime yok" });
       }
-      res.status(200).json({ message: "tr includes", data: body });
+      res.status(200).json({ message: "sözlükte mevcut", data: body });
     }
   }
 }
