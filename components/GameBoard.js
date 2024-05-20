@@ -48,7 +48,18 @@ const GameBoard = () => {
       {showToast && <GenericToast tooShort />}
       <Input onSubmit={submitHandler} correctWords={correctWords} />
       <Beehive />
-      {correctWords && correctWords.map((word) => <p key={word}>{word}</p>)}
+      {correctWords && (
+        <div className="flex justify-around flex-wrap w-1/3 items-center">
+          {correctWords.map((word) => (
+            <p
+              key={word}
+              className="bg-slate-100/50 font-semibold text-lg text-center p-2 rounded-lg cursor-pointer hover:text-slate-100 hover:bg-violet-400 transition duration-500"
+            >
+              {word}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -3,7 +3,9 @@ const TimeDisplay = ({ time }) => {
   const seconds = time % 60;
   // console.log(minutes);
   return (
-    <div>{`${String(minutes).padStart(2, "0")} : 
+    <div className="text-4xl font-bold text-center rounded-xl border-white border-2">{`${String(
+      minutes
+    ).padStart(2, "0")} : 
     ${String(seconds).padStart(2, "0")}`}</div>
   );
 };

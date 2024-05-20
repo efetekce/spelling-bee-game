@@ -4,8 +4,8 @@ const Layout = ({ children }) => {
   const path = usePathname();
 
   return (
-    <div className="min-h-screen grid place-items-center">
-      <header>
+    <div className="min-h-screen grid place-items-center gap-12 ">
+      <header className="self-end">
         {path === "/tr" ? (
           <div className="text-xl space-y-4 font-semibold text-center max-w-screen-lg">
             <h2>Kelime Kovanı Oyununa hoş geldiniz!</h2>{" "}
@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
           </div>
         )}
       </header>
-      <main className="container mx-auto max-w-screen-lg grid place-items-center gap-8 p-4 bg-slate-400/90 shadow-2xl rounded-xl">
+      <main className="container mx-auto max-w-screen-lg p-4 bg-slate-400/90 shadow-2xl rounded-xl self-start">
         {children}
       </main>
     </div>
