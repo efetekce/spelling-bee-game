@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Link
         href="/tr"
-        className="absolute top-2 right-2 p-3 bg-slate-200/70 shadow-xl  text-black font-semibold rounded-xl"
+        className="absolute top-2 right-2 p-3 bg-slate-300 hover:bg-violet-500 hover:text-slate-100 transition duration-500 shadow-xl  text-black font-semibold rounded-xl"
       >
         <span className="text-4xl p-4">
           TR

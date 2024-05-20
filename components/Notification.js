@@ -1,4 +1,4 @@
-const GenericToast = ({ tooShort }) => {
+const Notification = ({ tooShort }) => {
   let message = "";
   if (tooShort) message = "Word is too short.";
   return (
@@ -6,7 +6,7 @@ const GenericToast = ({ tooShort }) => {
       <p>{message}</p>
       <p>Invalid word</p>
       <p>Already found</p>
-      <p>Missing center letter</p>
+
       <p>Good</p>
       <p>Great</p>
       <p>Amazing</p>
@@ -15,4 +15,4 @@ const GenericToast = ({ tooShort }) => {
     </div>
   );
 };
-export default GenericToast;
+export default Notification;

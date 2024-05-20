@@ -2,19 +2,34 @@ import { useEffect, useRef, useState } from "react";
 import Timer from "./Timer";
 import Beehive from "./Beehive";
 import Input from "./Input";
-import GenericToast from "./GenericToast";
+import Notification from "./Notification";
 import { usePathname } from "next/navigation";
+import WordList from "./WordList";
 
 const GameBoard = () => {
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(60);
   const [showToast, setShowToast] = useState(false);
   const [isRunning, setRunning] = useState(false);
   const [isSubmitted, setSubmitted] = useState(false);
   const [correctWords, setCorrectWords] = useState([]);
+  const [letters, setLetters] = useState([]);
   const path = usePathname();
 
+  useEffect(() => {
+    const getLetters = async () => {
+      const response = await fetch("/api/game", {
+        headers: {
+          Path: path,
+        },
+      });
+      const data = await response.json();
+      setLetters(data.selectedLetters);
+      // console.log(data.selectedLetters);
+    };
+    getLetters();
+  }, []);
+
   const submitHandler = async (value) => {
-    // console.log(value.textInput.length);
     setSubmitted(true);
     setRunning(true);
     if (!correctWords.includes(value.textInput)) {
@@ -33,7 +48,7 @@ const GameBoard = () => {
         setCorrectWords([...correctWords, data.data]);
       }
     } else {
-      alert("Already found!");
+      // alert("Already found!");
     }
 
     if (value.textInput.length < 4) {
@@ -41,25 +56,18 @@ const GameBoard = () => {
     }
   };
   return (
-    <div className="grid gap-12 place-items-center ">
+    <div className="grid gap-12 place-items-center relative ">
       {isSubmitted && (
         <Timer time={time} isRunning={isRunning} setRunning={setRunning} />
       )}
-      {showToast && <GenericToast tooShort />}
-      <Input onSubmit={submitHandler} correctWords={correctWords} />
-      <Beehive />
-      {correctWords && (
-        <div className="flex justify-around flex-wrap w-1/3 items-center">
-          {correctWords.map((word) => (
-            <p
-              key={word}
-              className="bg-slate-100/50 font-semibold text-lg text-center p-2 rounded-lg cursor-pointer hover:text-slate-100 hover:bg-violet-400 transition duration-500"
-            >
-              {word}
-            </p>
-          ))}
-        </div>
-      )}
+      {/* {showToast && <Notification tooShort />} */}
+      <Input
+        onSubmit={submitHandler}
+        correctWords={correctWords}
+        letters={letters}
+      />
+      <Beehive letters={letters} />
+      {correctWords.length > 0 && <WordList correctWords={correctWords} />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TimeDisplay from "./TimeDisplay";
-
+import { motion } from "framer-motion";
 const Timer = ({ time, isRunning, setRunning }) => {
   //   console.log(time);
 
@@ -25,6 +25,14 @@ const Timer = ({ time, isRunning, setRunning }) => {
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  return <TimeDisplay time={remaining} />;
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 1 }}
+    >
+      <TimeDisplay time={remaining} />
+    </motion.div>
+  );
 };
 export default Timer;

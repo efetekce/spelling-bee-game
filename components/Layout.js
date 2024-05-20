@@ -11,9 +11,9 @@ const Layout = ({ children }) => {
             <h2>Kelime Kovanı Oyununa hoş geldiniz!</h2>{" "}
             <p>
               Arı kovanındaki 7 harfle mümkün olduğunca fazla tahmin yapmaya
-              çalışın. Tahminleriniz en az 4 harften oluşmalı ve merkez harfi
-              içermelidir. Her doğru tahmin, 15 saniye kazandırır. Zamanlayıcı
-              ilk tahmininizden sonra başlayacak.
+              çalışın. Tahminleriniz en az 3 harften oluşmalıdır. Her doğru
+              tahmin, 15 saniye kazandırır. Zamanlayıcı ilk tahmininizden sonra
+              başlayacak.
             </p>
             <p>Bol şans :-)</p>
           </div>
@@ -22,15 +22,14 @@ const Layout = ({ children }) => {
             <h2>Welcome to Spelling Bee Game!</h2>
             <p>
               Try to make as many guesses as possible using 7 letters from the
-              beehive. Your guess must contain at least 4 letters and include
-              the center letter. Each correct guess saves you 15 seconds. Timer
-              starts after your first guess.
+              beehive. Your guess must contain at least 3 letters. Each correct
+              guess saves you 15 seconds. Timer starts after your first guess.
             </p>
             <p>Good luck :-)</p>
           </div>
         )}
       </header>
-      <main className="container mx-auto max-w-screen-lg p-4 bg-slate-400/90 shadow-2xl rounded-xl self-start">
+      <main className="container mx-auto max-w-screen-lg p-4 bg-gradient-to-br from-slate-500/40 via-slate-400/90 to-slate-300/60 shadow-2xl rounded-xl self-start">
         {children}
       </main>
     </div>
