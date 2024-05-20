@@ -114,8 +114,9 @@ export default function handler(req, res) {
     if (headers.path === "/en") {
       console.log(body);
       if (!dictionary.includes(body)) {
-        //   console.log("includessss");
-        res.status(201).json("post request made but word not found");
+        res
+          .status(404)
+          .json({ message: "post request made but word was not found" });
       }
       res.status(200).json({ message: "includes", data: body });
     } else if (headers.path === "/tr") {

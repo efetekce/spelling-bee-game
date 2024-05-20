@@ -42,15 +42,15 @@ const Input = ({ onSubmit, correctWords, letters }) => {
         {...register("textInput", {
           minLength: {
             value: 3,
-            message: "Too short",
+            message: "Too short.",
           },
           validate: {
             isAlreadyFound: (value) => {
               return correctWords.includes(value) ? "Already found." : true;
             },
             isUsingBeehiveLetters: (value) => {
-              const a = new RegExp(`^[${letters.join("")}]+$`, "i");
-              return a.test(value) || "Please use beehive letters.";
+              const lettersString = new RegExp(`^[${letters.join("")}]+$`, "i");
+              return lettersString.test(value) || "Please use beehive letters.";
             },
           },
         })}
